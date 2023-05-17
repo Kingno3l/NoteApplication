@@ -13,4 +13,13 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="ThemeOverlay.search" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Text color -->
+        <item name="android:editTextColor">@color/ColorWhite</item>
+        <!-- Hint text color -->
+        <item name="android:textColorHint">@color/ColorGray</item>
+
+    </style>
 </resources>
