@@ -1,10 +1,13 @@
 package android.example.noteapplication.database
 
 import android.content.Context
+import android.example.noteapplication.dao.NoteDao
 import android.example.noteapplication.entities.Notes
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+@Database(entities = [Notes::class], version = 2, exportSchema = false)
 abstract class NotesDatabase : RoomDatabase() {
 
     companion object {
@@ -12,7 +15,7 @@ abstract class NotesDatabase : RoomDatabase() {
 
         @Synchronized
         fun getDatabase(context: Context): NotesDatabase {
-            if (notesDatabase != null) {
+            if (notesDatabase == null) {
                 notesDatabase = Room.databaseBuilder(
                     context
                     , NotesDatabase::class.java
@@ -22,5 +25,6 @@ abstract class NotesDatabase : RoomDatabase() {
             return notesDatabase!!
         }
     }
-    abstract fun noteDao():Notes
+    abstract fun noteDao(): NoteDao
+
 }

@@ -6,16 +6,18 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NoteDao {
 
     @get:Query("SELECT * FROM notes ORDER BY id DESC")
-    val allNotes: List<Notes>
+    val allNotes: Flow<List<Notes>>
+
 
     @Insert(onConflict =  OnConflictStrategy.REPLACE)
-    fun insertNotes(notes: Notes)
+    suspend fun insertNotes(notes: Notes)
 
     @Delete
-    fun deleteNote(note:Notes)
+    suspend fun deleteNote(note:Notes)
 }
